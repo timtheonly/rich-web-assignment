@@ -1,0 +1,33 @@
+input.ng-dirty.ng-invalid{
+	border:1px solid red;
+	padding:1px;
+}
+
+body{
+	padding-top:40px;
+	background:#EAEAEA;
+}
+
+button.btn
+{
+	background:black;
+	color:white;
+}
+
+button:disabled.btn
+{
+	background:#C1C1C1;
+}
+
+form#login
+{
+	background:#FFFFFF;
+	border:1px solid;
+	width: 220px;
+	height: 180px;
+	padding: 20px;
+	margin: 0px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
