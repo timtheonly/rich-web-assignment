@@ -16,4 +16,6 @@ angular.module('assignmentApp')
 		});
 		console.log($scope.message);
 	};
+}).controller('signUpCtrl', function($scope,$http){
+	$scope.show= false;
 });

@@ -2,14 +2,18 @@
 
 input.ng-dirty.ng-invalid{
 }
-
+.jumbotron
+{
+	background:#FFFFFF;
+	border:1px solid;
+}
 body{
 	font-family: 'Domine','Cantata One','Inkia', serif;
 	padding-top:40px;
 	background:#EAEAEA;
 }
 
-button.btn
+button.btn.login
 {
 	background:black;
 	color:white;
