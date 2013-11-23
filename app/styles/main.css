@@ -1,9 +1,10 @@
+@import url(http://fonts.googleapis.com/css?family=Domine|Cantata+One|Inika);
+
 input.ng-dirty.ng-invalid{
-	border:1px solid red;
-	padding:1px;
 }
 
 body{
+	font-family: 'Domine','Cantata One','Inkia', serif;
 	padding-top:40px;
 	background:#EAEAEA;
 }
@@ -26,7 +27,7 @@ form#login
 	width: 220px;
 	height: 180px;
 	padding: 20px;
-	margin: 0px;
+	margin: 0;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;

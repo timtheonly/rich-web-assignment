@@ -4,15 +4,18 @@
 var express = require('express'),
     path = require('path'),
     fs = require('fs'),
-    hbs=require('hbs'),
+    ejs=require('ejs-locals'),
     mongoose = require('mongoose'),
     connect = require('connect');
 
 var app = express();
 
+//associate ejs files to ejs-locals for templates
+app.engine('ejs', ejs);
+//set the views path
 app.set('views',path.join(__dirname, 'app/views'));
-app.set('view engine','html');
-app.engine('html',hbs.__express);
+//tell express that ejs is the templating engine
+app.set('view engine','ejs');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(connect.urlencoded());
