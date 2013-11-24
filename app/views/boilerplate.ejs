@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="styles/bootstrap.css" rel="stylesheet"/>
+<!--build:css styles/bootstrap.min.css-->
+<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
 <!--build:css styles/font-awesome.css-->
 <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
 <!--endbuild-->
 
 <link rel='stylesheet' type='text/css' href='styles/main.css'/>
+
 <meta charset="utf8">
-<title></title>
+<title><%= title %></title>
 </head>
 <body ng-app='assignmentApp'>
-<!--build:js script/angular.min.js-->
-<script src="bower_components/angular/angular.min.js"></script>
-<!--endbuild-->
-<%- body -%>
 	<!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
         your browser</a> to improve your experience.</p>
@@ -25,13 +23,30 @@
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!--build:js scripts/jquery.js-->
+<script src="bower_components/jquery/jquery.min.js"></script>
+<!--endbuild-->
+
+<!--build:js scripts/bootstrap.js-->
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!--endbuild-->
+
+<!--build:js script/angular.min.js-->
+<script src="bower_components/angular/angular.min.js"></script>
+<!--endbuild-->
+
+<!--build:js scripts/plugins.js-->
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<!--endbuild-->
 
 
-<!--build:js script/app.js-->
+
+<!--build:js scripts/app.js-->
 <script src='scripts/app.js'></script>
 <script src='scripts/controllers/index.js'></script>
 <!--endbuild-->
+
+<%- body -%>
 </body>
 </html>

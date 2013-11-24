@@ -1,12 +1,32 @@
 @import url(http://fonts.googleapis.com/css?family=Domine|Cantata+One|Inika);
 
-input.ng-dirty.ng-invalid{
+
+/* Hack to get angular ui modal dialog working with bootstrap 3
+ * for details see https://github.com/angular-ui/bootstrap/issues/722
+ */
+.modal {
+display: block;
 }
-.jumbotron
+.modal-body:before,
+.modal-body:after {
+display: table;
+content: " ";
+}
+.modal-header:before,
+.modal-header:after {
+display: table;
+content: " ";
+}
+.hide{
+	display:none;
+}
+/* end hack */
+
+.form-horizontal > *
 {
-	background:#FFFFFF;
-	border:1px solid;
+	padding-top: 10px;
 }
+
 body{
 	font-family: 'Domine','Cantata One','Inkia', serif;
 	padding-top:40px;
