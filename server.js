@@ -28,25 +28,23 @@ app.use(app.router);
 
 
 mongoose = mongoose.connect('mongodb://localhost/rwa');
-mongoose.connection.on('conected',function(){
-  console.log('connected to mongoDB');
-});
+
 
 
 // Routes
 //dynamically include all routes
-fs.readdirSync('./routes').forEach(function(filename){
-  var route ={};
-  if(filename.substr(-3) === '.js')
-  {
-          route = require('./routes/'+filename);
-          route.setup(app);
-  }
-});
+mongoose.connection.once('open',function(){
+  console.log('connected to mongoDB !');
 
-/*app.get('/', function(req, res){
-    res.render('index', { title: 'Login' });
-});*/
+  fs.readdirSync('./routes').forEach(function(filename){
+    var route ={};
+    if(filename.substr(-3) === '.js')
+    {
+      route = require('./routes/'+filename);
+      route.setup(app, mongoose);
+    }
+  });
+});
 
 app.listen(9000);
 console.log('Express server listening on port 9000');

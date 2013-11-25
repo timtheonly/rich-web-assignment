@@ -3,11 +3,12 @@
 angular.module('assignmentApp')
   	.controller('loginCtrl', function ($scope, $http, $modal) {
 	$scope.login = function(){
-		$http.post('/users', {username: $scope.username, password: $scope.password})
+		$http.post('/users/login', {username: $scope.username, password: $scope.password})
 		.success(function(data,status,headers,config){
 			if(data === 'ok')
 			{
 				//TODO:: redirect logged in user
+				console.log('user logged in');
 
 			}else{
 				$scope.message = data;
@@ -30,9 +31,29 @@ angular.module('assignmentApp')
     });
 	};
 	
-}).controller('ModalCtrl', function($scope, $modalInstance){
+}).controller('ModalCtrl', function($scope, $http, $modalInstance){
+	$scope.input ={};
+	console.log($scope);
 	$scope.ok = function(){
-		$modalInstance.close();
+		console.log($scope);
+		$http.post('/users',$scope.input)
+			.success(function(data,status,headers,config){
+				if(data === 'ok'){
+					$scope.createdAccount = true;
+					setTimeout(function(){
+						$modalInstance.close();
+					}, 3000);
+
+				}else if(data ==='user exsits'){
+					$scope.usernameExists = true;
+				}else{
+					$scope.errorHappened = true;
+				}
+			})
+			.error(function(){
+				$scope.errorHappened = true;
+			});
+		
 	};
 
 	$scope.cancel = function(){

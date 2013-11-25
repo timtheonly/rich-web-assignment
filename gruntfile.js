@@ -49,12 +49,13 @@ module.exports = function (grunt) {
       },
       express: {
           files: [
-              '<%= yeoman.app %>/{,*//*}*.html',
+              '<%= yeoman.app %>/{,*//*}*{.html,.ejs}',
               '{.tmp,<%= yeoman.app %>}/styles/{,*//*}*.css',
               '{.tmp,<%= yeoman.app %>}/scripts/{,*//*}*.js',
               '<%= yeoman.app %>/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}',
               'server.js',
-              'lib/{,*//*}*.{js,json}'
+              'lib/{,*//*}*.{js,json}',
+              'routes/{*//*}*.js'
           ],
           tasks: ['express:dev'],
           options: {
