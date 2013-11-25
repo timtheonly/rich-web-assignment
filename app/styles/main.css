@@ -22,6 +22,14 @@ content: " ";
 }
 /* end hack */
 
+/*alert-danger is a little too big for forms */
+.alert-danger{
+	padding-top: 1px;
+	padding-bottom: 1px;
+	height:20px;
+}
+
+/*space out all horizontal forms */
 .form-horizontal > *
 {
 	padding-top: 10px;

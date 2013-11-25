@@ -2,22 +2,33 @@
    <div class='modal-content'>
   	 <div class='modal-header'><h3>Sign up</h3></div>
   	 <div class='modal-body'>
-  	 	<form class='form-horizontal'>
+  	 	<form class='form-horizontal' name='signup' novalidate >
 	  	 	<div class='input-group'>
-	  	 		<input type='text' placeholder='Name'/>
+	  	 		<input class='form-control' type='text' placeholder='Name'  ng-model='name'/>
 	  	 	</div>
 	  	 	<div class='input-group'>
-	  	 		<input type='text' placeholder='Username'/>
+	  	 		<input class='form-control' type='text' placeholder='Username' name='username' ng-model='username' required/>
+	  	 		<div  class='alert alert-danger' ng-show="signup.username.$error.required && signup.username.$dirty">
+	  	 			<strong>Error</strong> This is a required field
+	  	 		</div>
 	  	 	</div>
 	  	 	<div class='input-group'>
-	  	 		<input type='email' placeholder='Email'/>
+	  	 		<input class='form-control' type='email' placeholder='Email' name='email' ng-model='email'  required/>
+	  	 		<div  class='alert alert-danger' ng-show="signup.email.$error.required && signup.email.$dirty">
+	  	 			<strong>Error</strong> This is a required field
+	  	 		</div>
+	  	 		<div  class='alert alert-danger' ng-show="signup.email.$error.email && signup.email.$dirty">
+	  	 				<strong>Error</strong> Invalid Email
+	  	 		</div>
 	  	 	</div>
 	  	 	<div class='input-group'>
-	  	 		<input type='password' placeholder='Password'/>
-	  	 	</div>
-	  	</form>
+	  	 		<input  class='form-control' type='password' placeholder='Password'   name='password' ng-model='password' required/>
+	  	 		<div  class='alert alert-danger' ng-show="signup.password.$error.required && signup.password.$dirty">
+	  	 			<strong>Error</strong> This is a required field
+	  	 		</div>
+	  	</div>
+
   	 	
-	</div>
   	 <div class='modal-footer'>
   	 	<button  class='btn btn-danger' ng-click='cancel()' >cancel</button>
   	 	<button  class='btn btn-success' ng-click='ok()' >Sign me up</button>
