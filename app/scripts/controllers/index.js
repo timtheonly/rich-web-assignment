@@ -1,18 +1,16 @@
 'use strict';
 
 angular.module('assignmentApp')
-  	.controller('loginCtrl', function ($scope, $http, $modal) {
+  	.controller('loginCtrl', function ($scope, $http, $modal, $window) {
 	$scope.login = function(){
 		$http.post('/users/login', {username: $scope.username, password: $scope.password})
 		.success(function(data,status,headers,config){
-			if(data === 'ok')
+			if(data !== 'ok')
 			{
-				//TODO:: redirect logged in user
-				console.log('user logged in');
-
-			}else{
 				$scope.message = data;
 				$scope.password ='';
+			}else{
+				$window.location.href = '/chat';
 			}
 		});
 	};
@@ -33,7 +31,6 @@ angular.module('assignmentApp')
 	
 }).controller('ModalCtrl', function($scope, $http, $modalInstance){
 	$scope.input ={};
-	console.log($scope);
 	$scope.ok = function(){
 		console.log($scope);
 		$http.post('/users',$scope.input)

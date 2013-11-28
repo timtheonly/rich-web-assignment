@@ -55,7 +55,7 @@ module.exports = function (grunt) {
               '<%= yeoman.app %>/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}',
               'server.js',
               'lib/{,*//*}*.{js,json}',
-              'routes/{*//*}*.js'
+              'routes/*.js'
           ],
           tasks: ['express:dev'],
           options: {
