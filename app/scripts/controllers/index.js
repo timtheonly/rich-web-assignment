@@ -16,6 +16,7 @@ angular.module('assignmentApp')
 			}
 		});
 	};
+
 	
 	$scope.open = function () {
 

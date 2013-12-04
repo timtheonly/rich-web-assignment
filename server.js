@@ -33,13 +33,11 @@ app.use(app.router);
 mongoose = mongoose.connect('mongodb://localhost/rwa');
 
 
+var server = http.createServer(app);
+var io = socket.listen(server);
+server.listen(9000);
 
-console.log('connected to mongoDB !');
-var io = socket.listen(http.createServer(app));
-app.listen(9000);
 console.log('Express server listening on port 9000');
-
-
 // Routes
 //dynamically include all routes
 fs.readdirSync('./routes').forEach(function(filename){
