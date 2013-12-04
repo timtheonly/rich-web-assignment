@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('assignmentApp', ['ui.bootstrap']);
+angular.module('assignmentApp', ['ui.bootstrap','btford.socket-io']);

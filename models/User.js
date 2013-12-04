@@ -1,3 +1,5 @@
+'use strict';
+
 var bcrypt = require('bcrypt');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
@@ -27,6 +29,7 @@ userSchema.pre('save', function(next){
 		next();
 	}
 });
+
 /*
 *	check an unencrypted password against the stored encrypted one
 *	@param {string} unencrypted password to check against
@@ -47,7 +50,7 @@ userSchema.methods.verifyPassword = function(inputPassword, callback){
 * 
 */
 userSchema.statics.authenicate = function(username, password, callback){
-	this.findOne({username: username}, function(err, user){
+	this.findOne({username: username},function(err, user){
 		if(err) callback(err);
 
 		//if no user returned authenication has failed

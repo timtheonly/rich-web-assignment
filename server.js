@@ -6,9 +6,12 @@ var express = require('express'),
     fs = require('fs'),
     ejs=require('ejs-locals'),
     mongoose = require('mongoose'),
-    connect = require('connect');
+    connect = require('connect'),
+    socket = require('socket.io'),
+    http = require('http');
 
 var app = express();
+
 
 //associate ejs files to ejs-locals for templates
 app.engine('ejs', ejs);
@@ -31,20 +34,18 @@ mongoose = mongoose.connect('mongodb://localhost/rwa');
 
 
 
-// Routes
-//dynamically include all routes
-mongoose.connection.once('open',function(){
-  console.log('connected to mongoDB !');
-
-  fs.readdirSync('./routes').forEach(function(filename){
-    var route ={};
-    if(filename.substr(-3) === '.js')
-    {
-      route = require('./routes/'+filename);
-      route.setup(app, mongoose);
-    }
-  });
-});
-
+console.log('connected to mongoDB !');
+var io = socket.listen(http.createServer(app));
 app.listen(9000);
 console.log('Express server listening on port 9000');
+
+
+// Routes
+//dynamically include all routes
+fs.readdirSync('./routes').forEach(function(filename){
+  if(filename.substr(-3) === '.js')
+  {
+    require('./routes/'+filename).setup(app,mongoose, io);
+  }
+});
+

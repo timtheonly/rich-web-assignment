@@ -1,13 +1,15 @@
 'use strict';
 
 angular.module('assignmentApp')
-  	.controller('loginCtrl', function ($scope, $http, $modal, $window) {
+	.controller('loginCtrl', function ($scope, $http, $modal, $window) {
+	$scope.hasMessage = false;
 	$scope.login = function(){
 		$http.post('/users/login', {username: $scope.username, password: $scope.password})
 		.success(function(data,status,headers,config){
 			if(data !== 'ok')
 			{
 				$scope.message = data;
+				$scope.hasMessage = true;
 				$scope.password ='';
 			}else{
 				$window.location.href = '/chat';
