@@ -23,7 +23,8 @@ module.exports.setup = function(app, mongoose, io){
 				{
 					var tempUser = {name:data.name,
 						email:data.email,
-						username:data.username
+						username:data.username,
+						id:data._id
 					};
 					users.push(tempUser);
 					req.session.user = tempUser;

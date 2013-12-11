@@ -22,12 +22,19 @@ content: " ";
 }
 /* end hack */
 
+.userbox:hover
+{
+	border:5px solid #98F5FF;
+}
 
 .chatBox
 {
 	background:white;
 	overflow-y:scroll;
 	height:500px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
 }
 
 /*alert-danger is a little too big for forms */

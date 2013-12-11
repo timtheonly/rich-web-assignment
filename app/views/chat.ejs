@@ -7,14 +7,16 @@
 		</div>
 		<div class='row'>
 			<div class="col-md-8" style='padding-top:15px'>
-				<div class='chatBox' >
-
+				<div class='chatBox' ng-model='chatBox'>
+					<ul class='list-group'>
+						<li class='list-group-item' ng-repeat='message in messages'>{{message}}</li>
+					</ul>
 				</div>
 			</div>
 		<div class="col-md-3 col-md-offset-1">
 			<h3>other users online</h3>
-			<ul class=''>
-				<li ng-repeat='user in users'>{{user.username}}</li>
+			<ul class='list-unstyled'>
+				<li ng-repeat='user in users' ng-click='$parent.chat_with(user.id)'><div class='well userbox'>{{user.username}}</div></li>
 			</ul>
 		</div>
 			

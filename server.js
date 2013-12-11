@@ -37,6 +37,12 @@ var server = http.createServer(app);
 var io = socket.listen(server);
 server.listen(9000);
 
+io.sockets.on('connection', function(socket){
+    socket.on('send',function(data){
+      socket.broadcast.emit('message', data);
+    });
+  });
+
 console.log('Express server listening on port 9000');
 // Routes
 //dynamically include all routes
