@@ -34,12 +34,15 @@ module.exports.setup = function(app, mongoose, io){
 			});
 	});
 
-
+	app.get('/users',function(req,res){
+		res.send(users);
+	})
 	app.get('/users/logout',function(req,res){
 		if(req.session.user)
 		{
 			users.splice(users.indexOf(req.session.user),1);
 			req.session.user = null;
+			io.sockets.emit('joined', users);
 		}
 		res.redirect('/');
 	});

@@ -6,11 +6,30 @@
 			</div>
 		</div>
 		<div class='row'>
-			<div class="col-md-3 col-md-offset-9" style='padding-top:15px'>
-				<h3>other users online</h3>
-				<ul class=''>
-					<li ng-repeat='user in users'>{{user.username}}</li>
-				</ul>
+			<div class="col-md-8" style='padding-top:15px'>
+				<div class='chatBox' >
+
+				</div>
 			</div>
+		<div class="col-md-3 col-md-offset-1">
+			<h3>other users online</h3>
+			<ul class=''>
+				<li ng-repeat='user in users'>{{user.username}}</li>
+			</ul>
 		</div>
+			
+
+		</div>
+	<div class='row'>
+
+		<div class="col-md-8" style='padding-top:15px'>
+				<div class="input-group">
+     				<input type="text" class="form-control" ng-model='text'>
+     				<span class="input-group-btn">
+        				<button class="btn btn-primary" ng-click='message()' type="button">Go</button>
+      				</span>
+   				 </div>
+			</div>
+	</div>
+
 </div>

@@ -5,7 +5,6 @@ module.exports.setup = function(app, mongoose, io){
 		if(req.session.user)
 		{
 			res.render('chat', {title:'chat'});
-			io.sockets.emit('joined', users);
 
 		}else{
 			res.redirect('/');
