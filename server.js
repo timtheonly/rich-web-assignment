@@ -36,14 +36,22 @@ mongoose = mongoose.connect('mongodb://localhost/rwa');
 var server = http.createServer(app);
 var io = socket.listen(server);
 server.listen(9000);
+console.log('Express server listening on port 9000');
 
+//take care of messages being sent/received
 io.sockets.on('connection', function(socket){
+
+    //send messages 
     socket.on('send',function(data){
-      socket.broadcast.emit('message', data);
+      socket.broadcast.to(''+data.room).emit('message',data.message);
     });
+
+    //select a different room
+    socket.on('room',function(data){
+        socket.join(''+data);
+      });
   });
 
-console.log('Express server listening on port 9000');
 // Routes
 //dynamically include all routes
 fs.readdirSync('./routes').forEach(function(filename){
@@ -52,4 +60,3 @@ fs.readdirSync('./routes').forEach(function(filename){
     require('./routes/'+filename).setup(app,mongoose, io);
   }
 });
-

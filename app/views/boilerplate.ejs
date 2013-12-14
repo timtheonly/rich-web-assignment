@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!--build:css styles/bootstrap.min.css-->
+<!--build:css({.tmp,app}) styles/bootstrap.min.css-->
 <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
-<!--build:css styles/font-awesome.css-->
+<!--build:css({.tmp,app}) styles/font-awesome.css-->
 <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
 <!--endbuild-->
 
@@ -24,32 +24,32 @@
     <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
-<!--build:js scripts/jquery.js-->
+<!--build:js(app) scripts/jquery.js-->
 <script src="bower_components/jquery/jquery.min.js"></script>
 <!--endbuild-->
 
-<!--build:js scripts/bootstrap.js-->
+<!--build:js(app) scripts/bootstrap.js-->
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!--endbuild-->
 
 
 <script src="socket.io/socket.io.js"></script>
 
-<!--build:js scripts/angular.min.js-->
+<!--build:js(app) scripts/angular.min.js-->
 <script src="bower_components/angular/angular.min.js"></script>
 <!--endbuild-->
 
-<!--build:js scripts/angular.min.js-->
+<!--build:js(app) scripts/angular.min.js-->
 <script src="/bower_components/angular-socket-io/socket.js"></script>
 <!--endbuild-->
 
-<!--build:js scripts/plugins.js-->
+<!--build:js(app) scripts/plugins.js-->
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 <!--endbuild-->
 
 
 
-<!--build:js scripts/app.js-->
+<!--build:js({.tmp,app}) scripts/app.js-->
 <script src='scripts/app.js'></script>
 <script src='scripts/controllers/index.js'></script>
 <script src='scripts/controllers/chat.js'></script>

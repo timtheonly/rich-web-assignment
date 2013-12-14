@@ -6,6 +6,8 @@ var users =[];
 module.exports.setup = function(app, mongoose, io){
 	var User = mongoose.model('User');
 	var sockets = io.sockets;
+
+	//authenicate a user
 	app.post('/users/login', function(req,res){
 		User.authenicate(req.body.username, req.body.password, function(err, data){
 				if(err)
@@ -29,25 +31,35 @@ module.exports.setup = function(app, mongoose, io){
 					users.push(tempUser);
 					req.session.user = tempUser;
 					res.send('ok');
-					io.sockets.emit('joined', users);
-					}
+					sockets.emit('joined', users);
+				}
 				
 			});
 	});
 
+
+	//get active users
 	app.get('/users',function(req,res){
 		res.send(users);
-	})
+	});
+
+	//get the current users data
+	app.get('/user',function(req,res){
+		res.send(req.session.user);
+	});
+
+	//user wants to logout
 	app.get('/users/logout',function(req,res){
 		if(req.session.user)
 		{
 			users.splice(users.indexOf(req.session.user),1);
 			req.session.user = null;
-			io.sockets.emit('joined', users);
+			sockets.emit('joined', users);
 		}
 		res.redirect('/');
 	});
 
+	//create a new user
 	app.post('/users', function(req,res){
 		var user = new User({
 			name: req.body.name,
