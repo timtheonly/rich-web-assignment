@@ -8,7 +8,8 @@ var express = require('express'),
     mongoose = require('mongoose'),
     connect = require('connect'),
     socket = require('socket.io'),
-    http = require('http');
+    http = require('http'),
+    colors = require('colors');
 
 var app = express();
 
@@ -43,12 +44,13 @@ io.sockets.on('connection', function(socket){
 
     //send messages 
     socket.on('send',function(data){
-      socket.broadcast.to(''+data.room).emit('message',data.message);
+      socket.broadcast.to(''+data.room).emit('message',{message:data.message, from:data.from});
     });
 
     //select a different room
     socket.on('room',function(data){
         socket.join(''+data);
+        console.log('Debug:'.red +'someone joined room: '+ data);
       });
   });
 
@@ -57,6 +59,7 @@ io.sockets.on('connection', function(socket){
 fs.readdirSync('./routes').forEach(function(filename){
   if(filename.substr(-3) === '.js')
   {
+    //all routes should be in the routes folder
     require('./routes/'+filename).setup(app,mongoose, io);
   }
 });

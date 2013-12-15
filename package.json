@@ -22,7 +22,7 @@
     "grunt-contrib-copy": "*",
     "grunt-contrib-cssmin": "*",
     "grunt-contrib-htmlmin": "*",
-    "jpegtran-bin":"*",
+    "jpegtran-bin": "*",
     "grunt-contrib-imagemin": "*",
     "grunt-contrib-jshint": "*",
     "grunt-contrib-uglify": "*",
@@ -36,7 +36,8 @@
     "load-grunt-tasks": "*",
     "time-grunt": "*",
     "grunt-express-server": "*",
-    "grunt-open": "*"
+    "grunt-open": "*",
+    "colors": "~0.6.2"
   },
   "engines": {
     "node": ">=0.8.0"
