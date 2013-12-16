@@ -9,7 +9,7 @@ var express = require('express'),
     connect = require('connect'),
     socket = require('socket.io'),
     http = require('http'),
-    colors = require('colors');
+    colors = require('colors');//for a nicer console output
 
 var app = express();
 

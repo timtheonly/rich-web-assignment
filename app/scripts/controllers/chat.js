@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('assignmentApp').controller('chatCtrl',function($scope,$http, socket, $modal, $timeout){
+angular.module('assignmentApp').controller('chatCtrl',function($scope,$http, socket, $modal, $timeout, $window){
 	
 	//forward socket events to angular
 	socket.forward('joined', $scope);
@@ -22,12 +22,16 @@ angular.module('assignmentApp').controller('chatCtrl',function($scope,$http, soc
 	//time limit
 	$scope.time = 30;
 
+	$scope.messageSent =false;
+
 	//when a message is received add it to the array
 	$scope.$on('socket:message',function(ev,data){
 		var msg = data.from +' said: ' + data.message;
 		$scope.chatting =true;
 		$scope.talkingto = data.from;
 		$scope.messages.push(msg);
+		$scope.messageSent = false;
+		$scope.time = 30;
 	});
 
 	//when someone else logs in update users array
@@ -63,6 +67,7 @@ angular.module('assignmentApp').controller('chatCtrl',function($scope,$http, soc
 		$scope.messages.push(msg);
 		socket.emit('send', {room:room,message:$scope.text, from:myName});//send a message and dont forget to say who its from
 		$scope.text ='';
+		$scope.messageSent = true;
 	};
 
 	$scope.checkSubmit = function($event){
@@ -83,12 +88,25 @@ angular.module('assignmentApp').controller('chatCtrl',function($scope,$http, soc
 		}
   	});
 
-	$timeout(function(){
-		if($scope.chatting && $scope.time > -1)
-		{
-			$scope.time--;
-		}
-	},1000);
+
+	$scope.timer = function(){
+		$timeout(function(){
+			if($scope.chatting && $scope.time > 0 && !$scope.messageSent)
+			{
+				$scope.time--;
+				$scope.timer();
+				console.log('gone');
+			}else if($scope.time === 0){
+				$window.location.href = '/users/logout';
+			}else
+			{
+				$scope.timer();
+			}
+		},1000);
+	};
+
+	$scope.timer();
+	
 
 }).controller('welcomeModalCtrl', function($scope, $modalInstance){
 	$scope.ok = function(){
